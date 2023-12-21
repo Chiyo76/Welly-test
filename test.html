@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welly test</title>
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.26.0/babel.js"></script>
+    
+</head>
+<body>
+    <div id="root"></div>
+    <div id="root2"></div>
+
+    <script>
+        // 1.字串反轉
+        function reverseString(str) {
+            return str.split('').reverse().join('');
+        }
+        console.log(reverseString("Hello"));// 預期輸出: "olleH”
+
+        // 2.陣列過濾
+        function filterNumbersGreaterThanFive(numbers) {
+            return numbers.filter(function(value){
+                return value > 5;
+            })
+        }
+        const numbers = [2, 8, 4, 10, 1, 7];
+        console.log(filterNumbersGreaterThanFive(numbers)); // 預期輸出: [8, 10, 7]
+
+        // 3.JavaScript: 重構
+        function formatName(firstName, lastName) {
+            return `${firstName || ''}${firstName && lastName ? ' ' : ''}${lastName || ''}`;
+            }
+            // 使用字串樣板來簡化程式碼
+            // ${firstName || ''}如果firstName存在就回傳firstName，反之回傳空字串
+            // ${firstName && lastName ? ' ' : ''}如果 firstName和lastName都存在，就回傳一個包含空格的字串，反之回傳一個空字串
+            // ${lastName || ''}如果lasttName存在就回傳firstName，反之回傳空字串
+            console.log(formatName('Chiyo','Chen'))
+    </script>
+
+    <script type="text/babel">
+        // 4.React: 條件渲染
+        function ConditionalRendering({ isLoggedIn }) {
+            return (
+                <React.Fragment>
+                    {isLoggedIn ? (<h1>Welcome, {User}!</h1>) 
+                    : (<h1>Please log in or register.</h1>)
+                }
+                </React.Fragment>
+                );
+            }
+            // 假設isLoggedIn為已登入
+            const isLoggedIn = true;
+            const User = "Jerry";
+        ReactDOM.render(<ConditionalRendering isLoggedIn={isLoggedIn} />, document.getElementById('root'))
+
+
+        // 5.React: 組件
+        function Counter() {
+            // 使用state來追蹤計數
+            const [count, setCount] = React.useState(0);
+            // 增加計數
+            const increment = () => {
+                setCount(count + 1);
+            };
+            // 減少計數
+            const decrement = () => {
+                setCount(count - 1);
+            };
+
+            return (
+                <React.Fragment>
+                <h2>計數器: {count}</h2>
+                <button onClick={increment}>增加</button>
+                <button onClick={decrement}>減少</button>
+                </React.Fragment>
+            );
+            }
+        ReactDOM.render(<Counter/>, document.getElementById('root2'))
+    </script>
+</body>
+</html>
